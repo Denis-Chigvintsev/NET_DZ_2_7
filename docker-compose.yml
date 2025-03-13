@@ -2,7 +2,7 @@ version: '3'
 
 services:
   library:
-    build: ./2-5-DZ-2
+    build: ./2-7-DZ-2
     ports:
       - '80:80'
     restart: always
@@ -10,7 +10,7 @@ services:
       - 'host.docker.internal:host-gateway'
 
   counter:
-    build: ./2-5-DZ-2-counter
+    build: ./2-7-DZ-2-counter
 
     ports:
       - '100:100'
@@ -18,7 +18,7 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     volumes:
-      - .:/app/data
+      - counter-data:/app/data
 
   mongo:
     image: mongo:7.0
@@ -35,4 +35,6 @@ services:
 
 volumes:
   mongodata:
+    driver: local
+  counter-data:
     driver: local
